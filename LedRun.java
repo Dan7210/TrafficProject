@@ -18,7 +18,7 @@ public class LedRun {
         });
 
         gpio = GpioFactory.getInstance();
-        red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_27, "Red", PinState.LOW);
+        red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12, "Red", PinState.LOW);
 
         while(true) {
             red.high();
