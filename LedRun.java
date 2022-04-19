@@ -22,8 +22,10 @@ public class LedRun {
 
         while(true) {
             red.high();
+            System.out.println("LED High.");
             Thread.sleep(3000);
             red.low();
+            System.out.println("LED Low.");
             Thread.sleep(3000);
         }        
     }
