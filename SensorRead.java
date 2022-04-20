@@ -19,15 +19,19 @@ public class SensorRead {
     }
 
     public static void checkLED() throws InterruptedException {
-        sensor.addListener(new GpioPinListenerDigital() {
-            @Override
-            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                System.out.println("GPIO Pin: " + event.getPin() + " = " + event.getState());
-            }
-        });
-
-        /*while(true) {
-            Thread.sleep(500);
-        }*/
+        try {
+            sensor.addListener(new GpioPinListenerDigital() {
+                @Override
+                public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
+                    System.out.println("GPIO Pin: " + event.getPin() + " = " + event.getState());
+                }
+            });
+    
+            /*while(true) {
+                Thread.sleep(500);
+            }*/
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }
