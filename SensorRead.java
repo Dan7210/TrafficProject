@@ -1,8 +1,6 @@
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
@@ -16,7 +14,7 @@ public class SensorRead {
         GpioPinDigitalInput sensor = gpio.provisionDigitalInputPin(RaspiPin.GPIO_26, "sensor");
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public void main() throws InterruptedException {
         System.out.println("Listener activated.");
         sensor.addListener(new GpioPinListenerDigital() {
             @Override
@@ -25,8 +23,8 @@ public class SensorRead {
             }
         });
 
-        while(true) {
+        /*while(true) {
             Thread.sleep(500);
-        }
+        }*/
     }
 }
