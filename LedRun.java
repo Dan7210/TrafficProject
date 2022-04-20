@@ -24,16 +24,19 @@ public class LedRun {
                 yellow.low();
                 red.low();
                 green.high();
+                break;
             case(1):
                 System.out.println("Red On");
                 green.low();
                 yellow.low();
                 red.high();
+                break;
             case(2):
                 System.out.println("Yellow On");
                 green.low();
                 red.low();
                 yellow.high();
+                break;
         }
     }
 }
