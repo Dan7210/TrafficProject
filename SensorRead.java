@@ -11,7 +11,7 @@ public class SensorRead {
     
     public static void main(String[] args) throws InterruptedException {
         gpio = GpioFactory.getInstance();
-        GpioPinDigitalInput sensor = gpio.provisionDigitalInputPin(RaspiPin.GPIO_26, "sensor");
+        GpioPinDigitalInput sensor = gpio.provisionDigitalInputPin(RaspiPin.GPIO_11, "sensor");
         System.out.println("Listener activated.");
         while(true) {
             checkLED();
@@ -20,12 +20,14 @@ public class SensorRead {
 
     public static void checkLED() throws InterruptedException {
         try {
-            sensor.addListener(new GpioPinListenerDigital() {
+            if(sensor != null){
+                sensor.addListener(new GpioPinListenerDigital() {
                 @Override
                 public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                     System.out.println("GPIO Pin: " + event.getPin() + " = " + event.getState());
                 }
-            });
+                });
+            }
     
             /*while(true) {
                 Thread.sleep(500);
