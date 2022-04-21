@@ -6,36 +6,36 @@ import com.pi4j.io.gpio.RaspiPin;
 
 public class LedRun {
     private static GpioController gpio = null;
-    private static GpioPinDigitalOutput red = null;
+    //private static GpioPinDigitalOutput red = null;
     private static GpioPinDigitalOutput green = null;
-    private static GpioPinDigitalOutput yellow = null;
+    //private static GpioPinDigitalOutput yellow = null;
     
     public LedRun() {
         gpio = GpioFactory.getInstance();
         green = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12, "Green", PinState.LOW);
-        red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13, "Red", PinState.LOW);
-        yellow = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_14, "Yellow", PinState.LOW);
+        //red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13, "Red", PinState.LOW);
+        //yellow = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_14, "Yellow", PinState.LOW);
     }
 
     public void changeLED(int color) {
         switch(color) {
             case(0):
                 System.out.println("Green On");
-                yellow.low();
-                red.low();
+                //yellow.low();
+                //red.low();
                 green.high();
                 break;
             case(1):
                 System.out.println("Red On");
                 green.low();
-                yellow.low();
-                red.high();
+                //yellow.low();
+                //red.high();
                 break;
             case(2):
                 System.out.println("Yellow On");
                 green.low();
-                red.low();
-                yellow.high();
+                //red.low();
+                //yellow.high();
                 break;
         }
     }
