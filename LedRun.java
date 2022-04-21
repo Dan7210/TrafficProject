@@ -12,7 +12,7 @@ public class LedRun {
     
     public LedRun() {
         gpio = GpioFactory.getInstance();
-        green = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12, "Green", PinState.LOW);
+        green = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10, "Green", PinState.LOW);
         //red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13, "Red", PinState.LOW);
         //yellow = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_14, "Yellow", PinState.LOW);
     }
