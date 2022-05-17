@@ -10,8 +10,15 @@ public class SensorRead {
     private static int carMinimum = 3;
     private static boolean stopLight = false;
 
-    private static LedRun led = new LedRun();
+    private static GpioController gpio = null;
+    private static GpioPinDigitalOutput red = null;
+    private static GpioPinDigitalOutput green = null;
 
+    public SensorRead() {
+        gpio = GpioFactory.getInstance();
+        green = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10, "Green", PinState.LOW);
+        red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11, "Red", PinState.LOW);
+    }
     public static void main(String args[]) throws InterruptedException {
         System.out.println("Car Detector Listener Started.");
 
@@ -50,17 +57,40 @@ public class SensorRead {
                 if(carCount >= carMinimum) {
                     System.out.println("Stop light on.");
                     stopLight = true;
-                    led.changeLED(0);
+                    changeLED(0);
                 }   
                 else {
                     System.out.println("Stop light off.");
                     stopLight = false;
-                    led.changeLED(1);
+                    changeLED(1);
                 }
             }
 
             //Sleep for 10 Milliseconds
             Thread.sleep(10);
+        }
+    }
+
+    public static void changeLED(int color) {
+        switch(color) {
+            case(0):
+                System.out.println("Green On");
+                //yellow.low();
+                red.low();
+                green.high();
+                break;
+            case(1):
+                System.out.println("Red On");
+                green.low();
+                //yellow.low();
+                red.high();
+                break;
+            case(2):
+                System.out.println("Yellow On");
+                green.high();
+                red.high();
+                //yellow.high();
+                break;
         }
     }
 }
