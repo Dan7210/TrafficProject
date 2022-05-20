@@ -14,16 +14,14 @@ public class TrafficProject {
     private static GpioPinDigitalOutput red = null;
     private static GpioPinDigitalOutput green = null;
 
-    public TrafficProject() {
-        gpio = GpioFactory.getInstance();
-        green = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10, "Green", PinState.LOW);
-        red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11, "Red", PinState.LOW);
-    }
     public static void main(String args[]) throws InterruptedException {
         System.out.println("Car Detector Listener Started.");
 
         // create gpio controller
-        final GpioController gpio = GpioFactory.getInstance();
+        GpioController gpio = GpioFactory.getInstance();
+        gpio = GpioFactory.getInstance();
+        green = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10, "Green", PinState.LOW);
+        red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11, "Red", PinState.LOW);
 
         boolean red = false;
 
