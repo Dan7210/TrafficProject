@@ -23,25 +23,20 @@ public class TrafficProject {
         green = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10, "Green", PinState.LOW);
         red = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11, "Red", PinState.LOW);
 
-        boolean red = false;
+        int red = 0;
 
         // keep program running until user aborts (CTRL-C)
         while(true) {
             deltaT++; //Increment every 10 Milliseconds
             
             //Every Minute reset carCount
-            if(deltaT%6000==0) {
-                red = !red;          
+            if(deltaT%1000==0) {
+                red++;
+                if(red == 3) {
+                    red = 0;
+                }          
+                changeLED(red);
             }
-
-            //Every 5 seconds check what mode
-            if(red) {
-                changeLED(1);
-            }
-            else {
-                changeLED(0);
-            }
-
             //Sleep for 10 Milliseconds
             Thread.sleep(10);
         }
@@ -50,19 +45,19 @@ public class TrafficProject {
     public static void changeLED(int color) {
         switch(color) {
             case(0):
-                System.out.println("Green On");
+                //System.out.println("Green On");
                 //yellow.low();
                 red.low();
                 green.high();
                 break;
             case(1):
-                System.out.println("Red On");
+                //System.out.println("Red On");
                 green.low();
                 //yellow.low();
                 red.high();
                 break;
             case(2):
-                System.out.println("Yellow On");
+                //System.out.println("Yellow On");
                 green.high();
                 red.high();
                 //yellow.high();
