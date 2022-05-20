@@ -29,8 +29,8 @@ public class TrafficProject {
         while(true) {
             deltaT++; //Increment every 10 Milliseconds
             
-            //Every Minute reset carCount
-            if(deltaT%1000==0) {
+            //Every X Seconds reset carCount
+            if(deltaT%250==0) {
                 red++;
                 if(red == 3) {
                     red = 0;
@@ -50,13 +50,13 @@ public class TrafficProject {
                 red.low();
                 green.high();
                 break;
-            case(1):
+            case(2):
                 //System.out.println("Red On");
                 green.low();
                 //yellow.low();
                 red.high();
                 break;
-            case(2):
+            case(1):
                 //System.out.println("Yellow On");
                 green.high();
                 red.high();
